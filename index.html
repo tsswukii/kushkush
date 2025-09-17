@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kushy's Register</title>
+  <style>
+  
+    :root {
+  --logo-size: clamp(40px, 11em, 250px);
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background: 
+      linear-gradient(to bottom right, rgba(43, 70, 49, 0.2), rgba(87, 139, 104, 0.2)),
+      url('kushys_logo2.png') no-repeat center center fixed;
+      background-size: cover;
+      color: #d2f8da;
+      padding: 20px;
+    }
+    
+    .header-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2em;
+      gap: clamp(0.2em, 5vw, 6em);
+      flex-wrap: nowrap;
+      margin-bottom: clamp(1em, calc(var(--logo-size) * 1.5), 2em); /* Dynamically linked margin */
+    }
+
+    .corner-logo {
+      height: clamp(40px, 8vw, 250px);
+      width: auto;
+      flex-shrink: 1;
+      transform: translateY(-0.5em);
+      z-index: 1000;
+    }
+
+    .corner-logo.left {
+      left: 1.5vw;
+    }
+
+    .corner-logo.right {
+      right: 1.5vw;
+    }
+
+    h1 {
+      font-size: 2.5em; /* Scales with logo size */
+      margin: 0;
+      padding: 0.3em 1em;
+      font-size: clamp(1.2em, 4vw, 2.5em);
+      background: linear-gradient(to right, #3a4f3f, #5e7a67);
+      border: 3px solid #212523;
+      border-radius: 18px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+      color: #d2f2cc;
+
+      display: inline-flex;             /* 🔑 Turn into flex container */
+      align-items: center;       /* 🔑 Vertically center text */
+      justify-content: center;   /* Horizontally center (optional for extra safety) */
+
+      width: fit-content;
+      max-width: 100%;
+      line-height: 1.0;        /* Controls vertical size gently */
+      word-break: break-word;  /* Prevents weird overflow */
+      flex: 1 1 auto;
+      flex-shrink: 1; /* allows it to scale down if needed */
+      white-space: nowrap;
+      max-width: 100%;
+      overflow-x: auto;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .category {
+      margin-bottom: 25px;
+      margin-left: clamp(2px, 5vw, 200px);
+      margin-right: clamp(2px, 5vw, 200px);
+      padding: 0 22px;
+    }
+
+    .category h2 {
+      color: #ddfae3;
+      background: linear-gradient(to top, #63866e, #516d58);
+      padding-bottom: 3px;
+      padding-top: 3px;
+      border: 3px solid #212523;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+      text-align: center;
+    }
+
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 10px;
+      margin-top: auto;
+    }
+
+    button.item-button,
+    button#clearBtn {
+      background: linear-gradient(to bottom, #63866e, #516d58);
+      border: 2px solid #212523;
+      border-radius: 14px;
+      padding-top: 8px;
+      padding-bottom: 8px;
+      font-size: 15px;
+      font-weight: bold;
+      color: #ebe6d4;
+      box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
+      transition: all 0.2s ease;
+      cursor: pointer;
+      display: -webkit-box;
+      display: box;
+      -webkit-box-orient: vertical;
+      box-orient: vertical;
+      -webkit-line-clamp: 2;
+      line-clamp: 2;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: normal;
+      max-height: 3.6em;
+    }
+
+    button.item-button:hover,
+    button#clearBtn:hover {
+      background: linear-gradient(to bottom, #76957e, #4f6959);
+      transform: scale(1.05);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+    }
+
+    button#clearBtn {
+      background: linear-gradient(to bottom, #a84f4f, #843d3d);
+      border-color: #dd8b8b;
+      color: #fff0f0;
+      margin-top: 20px;
+    }
+
+    .tracker {
+      background-color: #2c3b31;
+      padding: 30px;
+      border-radius: 16px;
+      margin: 25px auto;
+      width: 90%;
+      max-width: 600px;
+      max-height: 600px;
+      overflow-y: auto;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+      border: 2px solid #77aa77;
+      font-size: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .tracker input,
+    .tracker textarea {
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    #orderSummary {
+      width: 100%;
+      max-width: 400px;
+      margin-top: 10px;
+      text-align: left;
+    }
+
+    #copyOutput {
+      resize: none;
+      width: 100%;
+      max-width: 400px;
+      height: 120px;
+      text-align: left;
+    }
+
+    textarea {
+      height: 190px;
+    }
+
+    .total {
+      font-size: 18px;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+  .corner-logo {
+    height: var(--logo-size);
+    width: auto;
+    flex-shrink: 0;
+    transform: translateY(-0.5em);
+    transform: translateY(-0.5em);
+    z-index: 1000;
+  }
+
+  h1 {
+    font-size: 2.5em; /* Scales with logo size */
+    margin: 0;
+    padding: 0.3em 1em;
+    font-size: clamp(1.5em, 4vw, 2.5em);
+    background: linear-gradient(to right, #3a4f3f, #5e7a67);
+    border: 3px solid #212523;
+    border-radius: 18px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    color: #d2f2cc;
+    display: flex;             /* 🔑 Turn into flex container */
+    align-items: center;       /* 🔑 Vertically center text */
+    justify-content: center;   /* Horizontally center (optional for extra safety) */
+  }
+
+  @media (max-width: 850px) {
+  .header-container {
+    margin-bottom: 1.0em;
+    gap: clamp(0.2em, 1vw, 6em);
+  }
+  .corner-logo {
+    height: 4.5em;
+    width: auto;
+  }
+  h1 {
+    font-size: 1.5em;
+  }
+  .category {
+    margin-left: 2px;
+    margin-right: 2px;
+  }
+  body {
+    padding: 10px;
+    font-size: 14px;
+  }
+  .buttons {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); /* ⬅ wider buttons */
+    gap: 10px;
+  }
+  button.item-button,
+  button#clearBtn {
+    padding: 10px;
+    font-size: 14px; /* ⬅ smaller font for fit */
+    line-height: 1.2;
+    min-height: 50px; /* ⬅ consistent size for 2 lines */
+  }
+  input,
+  textarea {
+    font-size: 14px;
+    padding: 8px;
+  }
+  .tracker {
+    padding: 15px;
+  }
+  .total {
+    font-size: 16px;
+  }
+}
+  </style>
+</head>
+<body>
+
+
+<div class="header-container">
+  <img src="kushys_logo.png" class="corner-logo left" alt="Left Logo">
+  <h1>Kushy's Register</h1>
+  <img src="kushys_logo.png" class="corner-logo right" alt="Right Logo">
+</div>
+
+<div id="categories">
+
+  <!-- Category 1 -->
+  <div class="category">
+    <h2>Glassware</h2>
+    <div class="buttons">
+      <button class="item-button" data-name="Heart of the Ocean PIPE" data-price="1500">Heart of the Ocean PIPE - 1500$</button>
+      <button class="item-button" data-name="Zipline PIPE" data-price="1500">Zipline PIPE - 1500$</button>
+      <button class="item-button" data-name="Greenhorn PIPE" data-price="1500">Greenhorn PIPE - 1500$</button>
+      <button class="item-button" data-name="Hot Rod PIPE" data-price="1500">Hot Rod PIPE - 1500$</button>
+      <button class="item-button" data-name="King BONG" data-price="3000">King BONG - 3000$</button>
+      <button class="item-button" data-name="Cloud-9 BONG" data-price="3000">Cloud-9 BONG - 3000$</button>
+      <button class="item-button" data-name="Magma Mama BONG" data-price="3000">Magma Mama BONG - 3000$</button>
+      <button class="item-button" data-name="Wildfire BONG" data-price="3000">Wildfire BONG - 3000$</button>
+      <button class="item-button" data-name="Perfect Storm BONG" data-price="3000">Perfect Storm BONG - 3000$</button>
+      <button class="item-button" data-name="Cookies N Cream BONG" data-price="3000">Cookies N Cream BONG - 3000$</button>
+    </div>
+  </div>
+
+  <!-- Category 2 -->
+  <div class="category">
+    <h2>Dabs</h2>
+    <div class="buttons">
+      <button class="item-button" data-name="Dab Pen" data-price="2000">Dab Pen - 2000$</button>
+      <button class="item-button" data-name="Kiwi Krush CART" data-price="1100">Kiwi Krush CART - 1100$</button>
+      <button class="item-button" data-name="NightShade Nectar CART" data-price="1100">NightShade Nectar CART - 1100$</button>
+      <button class="item-button" data-name="Tropic Thunder OG CART" data-price="1100">Tropic Thunder OG CART - 1100$</button>
+    </div>
+  </div>
+
+  <!-- Category 3 -->
+  <div class="category">
+    <h2>Joints & Edibles</h2>
+    <div class="buttons">
+      <button class="item-button" data-name="Sherbert Kush JOINT" data-price="150">Sherbert Kush JOINT - 150$</button>
+      <button class="item-button" data-name="Kushberry JOINT" data-price="150">Kushberry JOINT - 150$</button>
+      <button class="item-button" data-name="Midnight Haze JOINT" data-price="150">Midnight Haze JOINT - 150$</button>
+      <button class="item-button" data-name="Kushy Cookie EDIBLE" data-price="300">Kushy Cookie EDIBLE - 300$</button>
+      <button class="item-button" data-name="Candied Popcorn Balls EDIBLE" data-price="300">Candied Popcorn Balls EDIBLE - 300$</button>
+      <button class="item-button" data-name="Chocolate Cones EDIBLE" data-price="300">Chocolate Cones EDIBLE - 300$</button>
+    </div>
+  </div>
+
+  <!-- Category 4 -->
+  <div class="category">
+    <h2>Sticker & Lighters</h2>
+    <div class="buttons">
+      <button class="item-button" data-name="White Leaf Lighter" data-price="300">White Leaf Lighter - 300$</button>
+      <button class="item-button" data-name="Black Leaf Lighter" data-price="300">Black Leaf Lighter - 300$</button>
+      <button class="item-button" data-name="Gold Leaf Lighter" data-price="300">Gold Leaf Lighter - 300$</button>
+      <button class="item-button" data-name="Cherry Popper STICKER" data-price="600">Cherry Popper STICKER - 600$</button>
+      <button class="item-button" data-name="Classic Kushy STICKER" data-price="600">Classic Kushy STICKER - 600$</button>
+      <button class="item-button" data-name="Care Kush STICKER" data-price="600">Care Kush STICKER - 600$</button>
+    </div>
+  </div>
+
+</div>
+
+<div class="tracker">
+  <h2>Sales Tracker</h2>
+
+  <label>Customer CID:</label>
+  <input type="text" id="customerName" placeholder="Enter customer CID" />
+
+  <label>Employee Name:</label>
+  <input type="text" id="employeeName" placeholder="Enter employee name" />
+
+  <label>Notes:</label>
+  <input type="text" id="notes" placeholder="Any notes..." />
+
+  <div id="orderSummary"></div>
+  <div class="total" id="totalDisplay">Total: $0</div>
+
+  <button id="clearBtn" onclick="copyToClipboard()">Copy Summary</button>
+  <button id="clearBtn" onclick="clearAll()">Clear All</button>
+</div>
+
+<script>
+  let order = [];
+  let total = 0;
+  let latestCopyText = "";
+
+  function addItem(name, price) {
+    const existing = order.find(item => item.name === name);
+    if (existing) {
+      existing.qty = (existing.qty || 1) + 1;
+    } else {
+      order.push({ name, price, qty: 1 });
+    }
+    total += price;
+    updateOrder();
+  }
+
+  function removeItemByName(e, name, price) {
+    e.preventDefault();
+    const index = order.findIndex(item => item.name === name && (item.qty || 1) > 0);
+    if (index !== -1) {
+      const item = order[index];
+      item.qty > 1 ? item.qty-- : order.splice(index, 1);
+      total -= price;
+      updateOrder();
+    }
+  }
+
+  function updateOrder() {
+    const orderSummary = document.getElementById("orderSummary");
+    const totalDisplay = document.getElementById("totalDisplay");
+
+    let summaryHTML = "<ul>";
+    let copyText = "";
+
+    order.forEach((item, index) => {
+      const qty = item.qty || 1;
+      summaryHTML += `<li onclick="removeItem(${index})" style="cursor:pointer;">${item.name} x${qty} - $${item.price * qty}</li>`;
+      copyText += `${item.name} x${qty} - $${item.price * qty}\n`;
+    });
+
+    summaryHTML += "</ul>";
+    copyText += `\nTotal: $${total}`;
+
+    orderSummary.innerHTML = summaryHTML;
+    totalDisplay.textContent = `Total: $${total}`;
+
+    const customer = document.getElementById("customerName").value || "N/A";
+    const employee = document.getElementById("employeeName").value || "N/A";
+    const notes = document.getElementById("notes").value || "None";
+
+    latestCopyText = `Customer: ${customer}\nEmployee: ${employee}\nNotes: ${notes}\n\nItems:\n${copyText}`;
+  }
+
+  function clearAll() {
+    order = [];
+    total = 0;
+    latestCopyText = "";
+    document.getElementById("customerName").value = "";
+    document.getElementById("employeeName").value = "";
+    document.getElementById("notes").value = "";
+    document.getElementById("orderSummary").innerHTML = "";
+    document.getElementById("totalDisplay").textContent = "Total: $0";
+  }
+
+  function copyToClipboard() {
+    if (!latestCopyText) {
+      alert("Nothing to copy yet.");
+      return;
+    }
+    navigator.clipboard.writeText(latestCopyText);
+  }
+
+  document.querySelectorAll('.item-button').forEach(button => {
+    const name = button.dataset.name;
+    const price = parseFloat(button.dataset.price);
+
+    button.setAttribute('title', button.textContent.trim());
+    button.addEventListener('click', () => addItem(name, price));
+    button.addEventListener('contextmenu', e => removeItemByName(e, name, price));
+  });
+
+  document.getElementById("customerName").addEventListener("input", updateOrder);
+  document.getElementById("employeeName").addEventListener("input", updateOrder);
+  document.getElementById("notes").addEventListener("input", updateOrder);
+</script>
+
+</body>
+</html>
