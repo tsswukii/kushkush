@@ -99,7 +99,8 @@
     }
 
     button.item-button,
-    button#clearBtn {
+    button#clearBtn,
+    button#copyBtn { /* Added button#copyBtn here */
       background: linear-gradient(to bottom, #63866e, #516d58);
       border: 2px solid #212523;
       border-radius: 14px;
@@ -124,7 +125,8 @@
     }
 
     button.item-button:hover,
-    button#clearBtn:hover {
+    button#clearBtn:hover,
+    button#copyBtn:hover { /* Added button#copyBtn here */
       background: linear-gradient(to bottom, #76957e, #4f6959);
       transform: scale(1.05);
       box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
@@ -135,6 +137,14 @@
       border-color: #dd8b8b;
       color: #fff0f0;
       margin-top: 20px;
+    }
+
+    /* Specific style for copyBtn to match clearBtn's appearance */
+    button#copyBtn {
+      background: linear-gradient(to bottom, #a84f4f, #843d3d); /* Same background as clearBtn */
+      border-color: #dd8b8b; /* Same border color as clearBtn */
+      color: #fff0f0; /* Same text color as clearBtn */
+      margin-top: 20px; /* Same margin as clearBtn */
     }
 
     .tracker {
@@ -232,11 +242,12 @@
     font-size: 14px;
   }
   .buttons {
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); /* ⬅ wider buttons */
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
     gap: 10px;
   }
   button.item-button,
-  button#clearBtn {
+  button#clearBtn,
+  button#copyBtn { 
     padding: 10px;
     font-size: 14px; /* ⬅ smaller font for fit */
     line-height: 1.2;
@@ -271,16 +282,16 @@
   <div class="category">
     <h2>Glassware</h2>
     <div class="buttons">
-      <button class="item-button" data-name="Heart of the Ocean PIPE" data-price="1000">Heart of the Ocean PIPE - 1000$</button>
-      <button class="item-button" data-name="Zipline PIPE" data-price="1000">Zipline PIPE - 1000$</button>
-      <button class="item-button" data-name="Greenhorn PIPE" data-price="1000">Greenhorn PIPE - 1000$</button>
-      <button class="item-button" data-name="Hot Rod PIPE" data-price="1000">Hot Rod PIPE - 1000$</button>
-      <button class="item-button" data-name="King BONG" data-price="2000">King BONG - 2000$</button>
-      <button class="item-button" data-name="Cloud-9 BONG" data-price="2000">Cloud-9 BONG - 2000$</button>
-      <button class="item-button" data-name="Magma Mama BONG" data-price="2000">Magma Mama BONG - 2000$</button>
-      <button class="item-button" data-name="Wildfire BONG" data-price="2000">Wildfire BONG - 2000$</button>
-      <button class="item-button" data-name="Perfect Storm BONG" data-price="2000">Perfect Storm BONG - 2000$</button>
-      <button class="item-button" data-name="Cookies N Cream BONG" data-price="2000">Cookies N Cream BONG - 2000$</button>
+      <button class="item-button" data-name="Heart of the Ocean PIPE" data-price="1500">Heart of the Ocean PIPE - 1500$</button>
+      <button class="item-button" data-name="Zipline PIPE" data-price="1500">Zipline PIPE - 1500$</button>
+      <button class="item-button" data-name="Greenhorn PIPE" data-price="1500">Greenhorn PIPE - 1500$</button>
+      <button class="item-button" data-name="Hot Rod PIPE" data-price="1500">Hot Rod PIPE - 1500$</button>
+      <button class="item-button" data-name="King BONG" data-price="3000">King BONG - 3000$</button>
+      <button class="item-button" data-name="Cloud-9 BONG" data-price="3000">Cloud-9 BONG - 3000$</button>
+      <button class="item-button" data-name="Magma Mama BONG" data-price="3000">Magma Mama BONG - 3000$</button>
+      <button class="item-button" data-name="Wildfire BONG" data-price="3000">Wildfire BONG - 3000$</button>
+      <button class="item-button" data-name="Perfect Storm BONG" data-price="3000">Perfect Storm BONG - 3000$</button>
+      <button class="item-button" data-name="Cookies N Cream BONG" data-price="3000">Cookies N Cream BONG - 3000$</button>
     </div>
   </div>
 
@@ -288,10 +299,10 @@
   <div class="category">
     <h2>Dabs</h2>
     <div class="buttons">
-      <button class="item-button" data-name="Dab Pen" data-price="1500">Dab Pen - 1500$</button>
-      <button class="item-button" data-name="Kiwi Krush CART" data-price="700">Kiwi Krush CART - 700$</button>
-      <button class="item-button" data-name="NightShade Nectar CART" data-price="700">NightShade Nectar CART - 700$</button>
-      <button class="item-button" data-name="Tropic Thunder OG CART" data-price="700">Tropic Thunder OG CART - 700$</button>
+      <button class="item-button" data-name="Dab Pen" data-price="2000">Dab Pen - 2000$</button>
+      <button class="item-button" data-name="Kiwi Krush CART" data-price="1100">Kiwi Krush CART - 1100$</button>
+      <button class="item-button" data-name="NightShade Nectar CART" data-price="1100">NightShade Nectar CART - 1100$</button>
+      <button class="item-button" data-name="Tropic Thunder OG CART" data-price="1100">Tropic Thunder OG CART - 1100$</button>
     </div>
   </div>
 
@@ -302,9 +313,9 @@
       <button class="item-button" data-name="Sherbert Kush JOINT" data-price="150">Sherbert Kush JOINT - 150$</button>
       <button class="item-button" data-name="Kushberry JOINT" data-price="150">Kushberry JOINT - 150$</button>
       <button class="item-button" data-name="Midnight Haze JOINT" data-price="150">Midnight Haze JOINT - 150$</button>
-      <button class="item-button" data-name="Kushy Cookie EDIBLE" data-price="250">Kushy Cookie EDIBLE - 250$</button>
-      <button class="item-button" data-name="Candied Popcorn Balls EDIBLE" data-price="250">Candied Popcorn Balls EDIBLE - 250$</button>
-      <button class="item-button" data-name="Chocolate Cones EDIBLE" data-price="250">Chocolate Cones EDIBLE - 250$</button>
+      <button class="item-button" data-name="Kushy Cookie EDIBLE" data-price="300">Kushy Cookie EDIBLE - 300$</button>
+      <button class="item-button" data-name="Candied Popcorn Balls EDIBLE" data-price="300">Candied Popcorn Balls EDIBLE - 300$</button>
+      <button class="item-button" data-name="Chocolate Cones EDIBLE" data-price="300">Chocolate Cones EDIBLE - 300$</button>
       <button class="item-button" data-name="Baggy of Sherbert CROP" data-price="125">Baggy of Sherbert CROP - 125$</button>
       <button class="item-button" data-name="Baggy of Kushberry CROP" data-price="125">Baggy of Kushberry CROP - 125$</button>
       <button class="item-button" data-name="Baggy of Midnight CROP" data-price="125">Baggy of Midnight CROP - 125$</button>
@@ -339,10 +350,15 @@
   <label>Notes:</label>
   <input type="text" id="notes" placeholder="Any notes..." />
 
+  <div class="vip-discount-container" style="margin-top: 10px; display: flex; align-items: center; justify-content: center;">
+    <input type="checkbox" id="vipDiscount" onchange="updateOrder()" style="margin-right: 1px;">
+    <label for="vipDiscount">VIP Discount (5% Off)</label>
+  </div>
+
   <div id="orderSummary"></div>
   <div class="total" id="totalDisplay">Total: $0</div>
 
-  <button id="clearBtn" onclick="copyToClipboard()">Copy Summary</button>
+  <button id="copyBtn" onclick="copyToClipboard()">Copy Summary</button>
   <button id="clearBtn" onclick="clearAll()">Clear All</button>
 </div>
 
@@ -350,6 +366,7 @@
   let order = [];
   let total = 0;
   let latestCopyText = "";
+  const VIP_DISCOUNT_PERCENTAGE = 0.05;
 
   function addItem(name, price) {
     const existing = order.find(item => item.name === name);
@@ -376,6 +393,16 @@
   function updateOrder() {
     const orderSummary = document.getElementById("orderSummary");
     const totalDisplay = document.getElementById("totalDisplay");
+    const vipDiscountCheckbox = document.getElementById("vipDiscount");
+
+    let currentTotal = order.reduce((sum, item) => sum + (item.price * (item.qty || 1)), 0);
+    let discountedTotal = currentTotal;
+    let discountApplied = false;
+
+    if (vipDiscountCheckbox.checked) {
+      discountedTotal = currentTotal * (1 - VIP_DISCOUNT_PERCENTAGE);
+      discountApplied = true;
+    }
 
     let summaryHTML = "<ul>";
     let copyText = "";
@@ -387,10 +414,18 @@
     });
 
     summaryHTML += "</ul>";
-    copyText += `\nTotal: $${total}`;
+    
+    let totalText = `Total: $${discountedTotal.toFixed(2)}`;
+    if (discountApplied) {
+      totalText += ` (5% VIP Discount Applied)`;
+      copyText += `\nSubtotal: $${currentTotal.toFixed(2)}`;
+      copyText += `\nVIP Discount: -${(currentTotal * VIP_DISCOUNT_PERCENTAGE).toFixed(2)}`;
+    }
+    copyText += `\nTotal: $${discountedTotal.toFixed(2)}`;
+
 
     orderSummary.innerHTML = summaryHTML;
-    totalDisplay.textContent = `Total: $${total}`;
+    totalDisplay.textContent = totalText;
 
     const customer = document.getElementById("customerName").value || "N/A";
     const employee = document.getElementById("employeeName").value || "N/A";
@@ -406,6 +441,7 @@
     document.getElementById("customerName").value = "";
     document.getElementById("employeeName").value = "";
     document.getElementById("notes").value = "";
+    document.getElementById("vipDiscount").checked = false;
     document.getElementById("orderSummary").innerHTML = "";
     document.getElementById("totalDisplay").textContent = "Total: $0";
   }
@@ -434,6 +470,7 @@
 
 </body>
 </html>
+
 
 
 
